@@ -1,0 +1,26 @@
+import random
+import string
+
+def generate_password(length, include_letters, include_numbers, include_symbols):
+    characters = ""
+    if include_letters:
+        characters += string.ascii_letters
+    if include_numbers:
+        characters += string.digits
+    if include_symbols:
+        characters += string.punctuation
+
+    if not characters:
+        print("Error: At least one character type must be included.")
+        return
+
+    password = ''.join(random.choice(characters) for _ in range(length))
+    print(f"Generated password: {password}")
+
+if __name__ == "__main__":
+    length = int(input("Enter desired password length: "))
+    include_letters = input("Include letters? (yes/no): ").lower() == "yes"
+    include_numbers = input("Include numbers? (yes/no): ").lower() == "yes"
+    include_symbols = input("Include symbols? (yes/no): ").lower() == "yes"
+
+    generate_password(length, include_letters, include_numbers, include_symbols)
